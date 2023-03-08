@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOrdersTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="OrdersListForm">
+                <p:panel header="#{bundle.ListOrdersTitle}">
+                    <p:dataTable id="datalist" value="#{ordersController.items}" var="item"
+                                 selectionMode="single" selection="#{ordersController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.orderId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_orderId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orderId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_orderDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.orderDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_requiredDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.requiredDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shippedDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shippedDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_freight}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.freight}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipAddress}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipCity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipCity}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipRegion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipRegion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipPostalCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipPostalCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipCountry}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipCountry}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_customerId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customerId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_employeeId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.employeeId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdersTitle_shipVia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.shipVia}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{ordersController.prepareCreate}" update=":OrdersCreateForm" oncomplete="PF('OrdersCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":OrdersViewForm" oncomplete="PF('OrdersViewDialog').show()" disabled="#{empty ordersController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":OrdersEditForm" oncomplete="PF('OrdersEditDialog').show()" disabled="#{empty ordersController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{ordersController.destroy}" update=":growl,datalist" disabled="#{empty ordersController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

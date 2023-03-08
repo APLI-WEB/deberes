@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SuppliersViewDlg" widgetVar="SuppliersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSuppliersTitle}">
+            <h:form id="SuppliersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{suppliersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_supplierId}"/>
+                        <h:outputText value="#{suppliersController.selected.supplierId}" title="#{bundle.ViewSuppliersTitle_supplierId}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_companyName}"/>
+                        <h:outputText value="#{suppliersController.selected.companyName}" title="#{bundle.ViewSuppliersTitle_companyName}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_contactName}"/>
+                        <h:outputText value="#{suppliersController.selected.contactName}" title="#{bundle.ViewSuppliersTitle_contactName}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_contactTitle}"/>
+                        <h:outputText value="#{suppliersController.selected.contactTitle}" title="#{bundle.ViewSuppliersTitle_contactTitle}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_address}"/>
+                        <h:outputText value="#{suppliersController.selected.address}" title="#{bundle.ViewSuppliersTitle_address}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_city}"/>
+                        <h:outputText value="#{suppliersController.selected.city}" title="#{bundle.ViewSuppliersTitle_city}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_region}"/>
+                        <h:outputText value="#{suppliersController.selected.region}" title="#{bundle.ViewSuppliersTitle_region}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_postalCode}"/>
+                        <h:outputText value="#{suppliersController.selected.postalCode}" title="#{bundle.ViewSuppliersTitle_postalCode}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_country}"/>
+                        <h:outputText value="#{suppliersController.selected.country}" title="#{bundle.ViewSuppliersTitle_country}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_phone}"/>
+                        <h:outputText value="#{suppliersController.selected.phone}" title="#{bundle.ViewSuppliersTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_fax}"/>
+                        <h:outputText value="#{suppliersController.selected.fax}" title="#{bundle.ViewSuppliersTitle_fax}"/>
+                        <h:outputText value="#{bundle.ViewSuppliersLabel_homepage}"/>
+                        <h:outputText value="#{suppliersController.selected.homepage}" title="#{bundle.ViewSuppliersTitle_homepage}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SuppliersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

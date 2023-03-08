@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGamaProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGamaProductoEmpty}" rendered="#{gamaProductoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{gamaProductoController.items.rowCount > 0}">
+                    <h:outputText value="#{gamaProductoController.pagination.pageFirstItem + 1}..#{gamaProductoController.pagination.pageLastItem + 1}/#{gamaProductoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{gamaProductoController.previous}" value="#{bundle.Previous} #{gamaProductoController.pagination.pageSize}" rendered="#{gamaProductoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{gamaProductoController.next}" value="#{bundle.Next} #{gamaProductoController.pagination.pageSize}" rendered="#{gamaProductoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{gamaProductoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGamaProductoTitle_gama}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gama}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGamaProductoTitle_descripcionTexto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionTexto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGamaProductoTitle_descripcionHtml}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionHtml}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGamaProductoTitle_imagen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.imagen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{gamaProductoController.prepareView}" value="#{bundle.ListGamaProductoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{gamaProductoController.prepareEdit}" value="#{bundle.ListGamaProductoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{gamaProductoController.destroy}" value="#{bundle.ListGamaProductoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{gamaProductoController.prepareCreate}" value="#{bundle.ListGamaProductoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListGamaProductoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

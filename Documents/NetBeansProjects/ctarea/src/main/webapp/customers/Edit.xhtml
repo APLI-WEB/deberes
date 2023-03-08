@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomersEditDlg" widgetVar="CustomersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCustomersTitle}">
+            <h:form id="CustomersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{customersController.selected.customerId}" title="#{bundle.EditCustomersTitle_customerId}" required="true" requiredMessage="#{bundle.EditCustomersRequiredMessage_customerId}"/>
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_companyName}" for="companyName" />
+                        <p:inputText id="companyName" value="#{customersController.selected.companyName}" title="#{bundle.EditCustomersTitle_companyName}" required="true" requiredMessage="#{bundle.EditCustomersRequiredMessage_companyName}"/>
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_contactName}" for="contactName" />
+                        <p:inputText id="contactName" value="#{customersController.selected.contactName}" title="#{bundle.EditCustomersTitle_contactName}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_contactTitle}" for="contactTitle" />
+                        <p:inputText id="contactTitle" value="#{customersController.selected.contactTitle}" title="#{bundle.EditCustomersTitle_contactTitle}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{customersController.selected.address}" title="#{bundle.EditCustomersTitle_address}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{customersController.selected.city}" title="#{bundle.EditCustomersTitle_city}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_region}" for="region" />
+                        <p:inputText id="region" value="#{customersController.selected.region}" title="#{bundle.EditCustomersTitle_region}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_postalCode}" for="postalCode" />
+                        <p:inputText id="postalCode" value="#{customersController.selected.postalCode}" title="#{bundle.EditCustomersTitle_postalCode}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{customersController.selected.country}" title="#{bundle.EditCustomersTitle_country}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{customersController.selected.phone}" title="#{bundle.EditCustomersTitle_phone}" />
+                        <p:outputLabel value="#{bundle.EditCustomersLabel_fax}" for="fax" />
+                        <p:inputText id="fax" value="#{customersController.selected.fax}" title="#{bundle.EditCustomersTitle_fax}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customersController.update}" value="#{bundle.Save}" update="display,:CustomersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CustomersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

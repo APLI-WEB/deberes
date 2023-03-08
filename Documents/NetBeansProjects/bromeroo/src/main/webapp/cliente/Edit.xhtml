@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClienteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClienteLabel_codigoCliente}" for="codigoCliente" />
+                    <h:inputText id="codigoCliente" value="#{clienteController.selected.codigoCliente}" title="#{bundle.EditClienteTitle_codigoCliente}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_codigoCliente}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_nombreCliente}" for="nombreCliente" />
+                    <h:inputText id="nombreCliente" value="#{clienteController.selected.nombreCliente}" title="#{bundle.EditClienteTitle_nombreCliente}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_nombreCliente}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_nombreContacto}" for="nombreContacto" />
+                    <h:inputText id="nombreContacto" value="#{clienteController.selected.nombreContacto}" title="#{bundle.EditClienteTitle_nombreContacto}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_apellidoContacto}" for="apellidoContacto" />
+                    <h:inputText id="apellidoContacto" value="#{clienteController.selected.apellidoContacto}" title="#{bundle.EditClienteTitle_apellidoContacto}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{clienteController.selected.telefono}" title="#{bundle.EditClienteTitle_telefono}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_telefono}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_fax}" for="fax" />
+                    <h:inputText id="fax" value="#{clienteController.selected.fax}" title="#{bundle.EditClienteTitle_fax}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_fax}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_lineaDireccion1}" for="lineaDireccion1" />
+                    <h:inputText id="lineaDireccion1" value="#{clienteController.selected.lineaDireccion1}" title="#{bundle.EditClienteTitle_lineaDireccion1}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_lineaDireccion1}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_lineaDireccion2}" for="lineaDireccion2" />
+                    <h:inputText id="lineaDireccion2" value="#{clienteController.selected.lineaDireccion2}" title="#{bundle.EditClienteTitle_lineaDireccion2}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_ciudad}" for="ciudad" />
+                    <h:inputText id="ciudad" value="#{clienteController.selected.ciudad}" title="#{bundle.EditClienteTitle_ciudad}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_ciudad}"/>
+                    <h:outputLabel value="#{bundle.EditClienteLabel_region}" for="region" />
+                    <h:inputText id="region" value="#{clienteController.selected.region}" title="#{bundle.EditClienteTitle_region}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_pais}" for="pais" />
+                    <h:inputText id="pais" value="#{clienteController.selected.pais}" title="#{bundle.EditClienteTitle_pais}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_codigoPostal}" for="codigoPostal" />
+                    <h:inputText id="codigoPostal" value="#{clienteController.selected.codigoPostal}" title="#{bundle.EditClienteTitle_codigoPostal}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_limiteCredito}" for="limiteCredito" />
+                    <h:inputText id="limiteCredito" value="#{clienteController.selected.limiteCredito}" title="#{bundle.EditClienteTitle_limiteCredito}" />
+                    <h:outputLabel value="#{bundle.EditClienteLabel_codigoEmpleadoRepVentas}" for="codigoEmpleadoRepVentas" />
+                    <h:selectOneMenu id="codigoEmpleadoRepVentas" value="#{clienteController.selected.codigoEmpleadoRepVentas}" title="#{bundle.EditClienteTitle_codigoEmpleadoRepVentas}" >
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClienteViewLink}"/>
+                <br />
+                <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.EditClienteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClienteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

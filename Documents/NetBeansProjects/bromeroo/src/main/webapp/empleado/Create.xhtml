@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEmpleadoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_codigoEmpleado}" for="codigoEmpleado" />
+                    <h:inputText id="codigoEmpleado" value="#{empleadoController.selected.codigoEmpleado}" title="#{bundle.CreateEmpleadoTitle_codigoEmpleado}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_codigoEmpleado}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{empleadoController.selected.nombre}" title="#{bundle.CreateEmpleadoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_apellido1}" for="apellido1" />
+                    <h:inputText id="apellido1" value="#{empleadoController.selected.apellido1}" title="#{bundle.CreateEmpleadoTitle_apellido1}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_apellido1}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_apellido2}" for="apellido2" />
+                    <h:inputText id="apellido2" value="#{empleadoController.selected.apellido2}" title="#{bundle.CreateEmpleadoTitle_apellido2}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_extension}" for="extension" />
+                    <h:inputText id="extension" value="#{empleadoController.selected.extension}" title="#{bundle.CreateEmpleadoTitle_extension}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_extension}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{empleadoController.selected.email}" title="#{bundle.CreateEmpleadoTitle_email}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_puesto}" for="puesto" />
+                    <h:inputText id="puesto" value="#{empleadoController.selected.puesto}" title="#{bundle.CreateEmpleadoTitle_puesto}" />
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_codigoJefe}" for="codigoJefe" />
+                    <h:selectOneMenu id="codigoJefe" value="#{empleadoController.selected.codigoJefe}" title="#{bundle.CreateEmpleadoTitle_codigoJefe}" >
+                        <f:selectItems value="#{empleadoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateEmpleadoLabel_codigoOficina}" for="codigoOficina" />
+                    <h:selectOneMenu id="codigoOficina" value="#{empleadoController.selected.codigoOficina}" title="#{bundle.CreateEmpleadoTitle_codigoOficina}" required="true" requiredMessage="#{bundle.CreateEmpleadoRequiredMessage_codigoOficina}">
+                        <f:selectItems value="#{oficinaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{empleadoController.create}" value="#{bundle.CreateEmpleadoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{empleadoController.prepareList}" value="#{bundle.CreateEmpleadoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEmpleadoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

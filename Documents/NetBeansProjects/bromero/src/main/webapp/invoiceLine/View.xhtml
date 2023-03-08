@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewInvoiceLineTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewInvoiceLineLabel_invoiceLineId}"/>
+                    <h:outputText value="#{invoiceLineController.selected.invoiceLineId}" title="#{bundle.ViewInvoiceLineTitle_invoiceLineId}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLineLabel_unitPrice}"/>
+                    <h:outputText value="#{invoiceLineController.selected.unitPrice}" title="#{bundle.ViewInvoiceLineTitle_unitPrice}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLineLabel_quantity}"/>
+                    <h:outputText value="#{invoiceLineController.selected.quantity}" title="#{bundle.ViewInvoiceLineTitle_quantity}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLineLabel_invoiceId}"/>
+                    <h:outputText value="#{invoiceLineController.selected.invoiceId}" title="#{bundle.ViewInvoiceLineTitle_invoiceId}"/>
+                    <h:outputText value="#{bundle.ViewInvoiceLineLabel_trackId}"/>
+                    <h:outputText value="#{invoiceLineController.selected.trackId}" title="#{bundle.ViewInvoiceLineTitle_trackId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{invoiceLineController.destroyAndView}" value="#{bundle.ViewInvoiceLineDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewInvoiceLineEditLink}"/>
+                <br />
+                <h:commandLink action="#{invoiceLineController.prepareCreate}" value="#{bundle.ViewInvoiceLineCreateLink}" />
+                <br />
+                <h:commandLink action="#{invoiceLineController.prepareList}" value="#{bundle.ViewInvoiceLineShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewInvoiceLineIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListOrdenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListOrdenesEmpty}" rendered="#{ordenesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{ordenesController.items.rowCount > 0}">
+                    <h:outputText value="#{ordenesController.pagination.pageFirstItem + 1}..#{ordenesController.pagination.pageLastItem + 1}/#{ordenesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{ordenesController.previous}" value="#{bundle.Previous} #{ordenesController.pagination.pageSize}" rendered="#{ordenesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{ordenesController.next}" value="#{bundle.Next} #{ordenesController.pagination.pageSize}" rendered="#{ordenesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{ordenesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesTitle_ordenid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ordenid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesTitle_fechaorden}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaorden}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesTitle_descuento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descuento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesTitle_clienteid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.clienteid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListOrdenesTitle_empleadoid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empleadoid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{ordenesController.prepareView}" value="#{bundle.ListOrdenesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenesController.prepareEdit}" value="#{bundle.ListOrdenesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{ordenesController.destroy}" value="#{bundle.ListOrdenesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{ordenesController.prepareCreate}" value="#{bundle.ListOrdenesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListOrdenesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

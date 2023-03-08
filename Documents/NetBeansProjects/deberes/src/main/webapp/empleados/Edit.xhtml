@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmpleadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{empleadosController.selected.id}" title="#{bundle.EditEmpleadosTitle_id}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{empleadosController.selected.nombre}" title="#{bundle.EditEmpleadosTitle_nombre}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{empleadosController.selected.apellido}" title="#{bundle.EditEmpleadosTitle_apellido}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_apellido}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_edad}" for="edad" />
+                    <h:inputText id="edad" value="#{empleadosController.selected.edad}" title="#{bundle.EditEmpleadosTitle_edad}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_edad}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_fechaNac}" for="fechaNac" />
+                    <h:inputText id="fechaNac" value="#{empleadosController.selected.fechaNac}" title="#{bundle.EditEmpleadosTitle_fechaNac}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_fechaNac}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_tipoDoc}" for="tipoDoc" />
+                    <h:inputText id="tipoDoc" value="#{empleadosController.selected.tipoDoc}" title="#{bundle.EditEmpleadosTitle_tipoDoc}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_tipoDoc}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_nroDoc}" for="nroDoc" />
+                    <h:inputText id="nroDoc" value="#{empleadosController.selected.nroDoc}" title="#{bundle.EditEmpleadosTitle_nroDoc}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_nroDoc}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_cuil}" for="cuil" />
+                    <h:inputText id="cuil" value="#{empleadosController.selected.cuil}" title="#{bundle.EditEmpleadosTitle_cuil}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_cuil}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{empleadosController.selected.direccion}" title="#{bundle.EditEmpleadosTitle_direccion}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_nroTelPrinc}" for="nroTelPrinc" />
+                    <h:inputText id="nroTelPrinc" value="#{empleadosController.selected.nroTelPrinc}" title="#{bundle.EditEmpleadosTitle_nroTelPrinc}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_nroTelPrinc}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_nroTelSec}" for="nroTelSec" />
+                    <h:inputText id="nroTelSec" value="#{empleadosController.selected.nroTelSec}" title="#{bundle.EditEmpleadosTitle_nroTelSec}" />
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{empleadosController.selected.email}" title="#{bundle.EditEmpleadosTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_cargo}" for="cargo" />
+                    <h:inputText id="cargo" value="#{empleadosController.selected.cargo}" title="#{bundle.EditEmpleadosTitle_cargo}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_cargo}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_antiguedad}" for="antiguedad" />
+                    <h:inputText id="antiguedad" value="#{empleadosController.selected.antiguedad}" title="#{bundle.EditEmpleadosTitle_antiguedad}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_antiguedad}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_fechaIngreso}" for="fechaIngreso" />
+                    <h:inputText id="fechaIngreso" value="#{empleadosController.selected.fechaIngreso}" title="#{bundle.EditEmpleadosTitle_fechaIngreso}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_fechaIngreso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_salarioAnual}" for="salarioAnual" />
+                    <h:inputText id="salarioAnual" value="#{empleadosController.selected.salarioAnual}" title="#{bundle.EditEmpleadosTitle_salarioAnual}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_salarioAnual}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{empleadosController.update}" value="#{bundle.EditEmpleadosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmpleadosViewLink}"/>
+                <br />
+                <h:commandLink action="#{empleadosController.prepareList}" value="#{bundle.EditEmpleadosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmpleadosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

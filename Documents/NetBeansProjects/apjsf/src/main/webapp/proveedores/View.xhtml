@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProveedoresTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProveedoresLabel_proveedorid}"/>
+                    <h:outputText value="#{proveedoresController.selected.proveedorid}" title="#{bundle.ViewProveedoresTitle_proveedorid}"/>
+                    <h:outputText value="#{bundle.ViewProveedoresLabel_nombreprov}"/>
+                    <h:outputText value="#{proveedoresController.selected.nombreprov}" title="#{bundle.ViewProveedoresTitle_nombreprov}"/>
+                    <h:outputText value="#{bundle.ViewProveedoresLabel_contacto}"/>
+                    <h:outputText value="#{proveedoresController.selected.contacto}" title="#{bundle.ViewProveedoresTitle_contacto}"/>
+                    <h:outputText value="#{bundle.ViewProveedoresLabel_celuprov}"/>
+                    <h:outputText value="#{proveedoresController.selected.celuprov}" title="#{bundle.ViewProveedoresTitle_celuprov}"/>
+                    <h:outputText value="#{bundle.ViewProveedoresLabel_fijoprov}"/>
+                    <h:outputText value="#{proveedoresController.selected.fijoprov}" title="#{bundle.ViewProveedoresTitle_fijoprov}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proveedoresController.destroyAndView}" value="#{bundle.ViewProveedoresDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProveedoresEditLink}"/>
+                <br />
+                <h:commandLink action="#{proveedoresController.prepareCreate}" value="#{bundle.ViewProveedoresCreateLink}" />
+                <br />
+                <h:commandLink action="#{proveedoresController.prepareList}" value="#{bundle.ViewProveedoresShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProveedoresIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

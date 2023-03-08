@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPagoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPagoLabel_pagoPK_idTransaccion}"/>
+                    <h:outputText value="#{pagoController.selected.pagoPK.idTransaccion}" title="#{bundle.ViewPagoTitle_pagoPK_idTransaccion}"/>
+                    <h:outputText value="#{bundle.ViewPagoLabel_formaPago}"/>
+                    <h:outputText value="#{pagoController.selected.formaPago}" title="#{bundle.ViewPagoTitle_formaPago}"/>
+                    <h:outputText value="#{bundle.ViewPagoLabel_fechaPago}"/>
+                    <h:outputText value="#{pagoController.selected.fechaPago}" title="#{bundle.ViewPagoTitle_fechaPago}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPagoLabel_total}"/>
+                    <h:outputText value="#{pagoController.selected.total}" title="#{bundle.ViewPagoTitle_total}"/>
+                    <h:outputText value="#{bundle.ViewPagoLabel_cliente}"/>
+                    <h:outputText value="#{pagoController.selected.cliente}" title="#{bundle.ViewPagoTitle_cliente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pagoController.destroyAndView}" value="#{bundle.ViewPagoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPagoEditLink}"/>
+                <br />
+                <h:commandLink action="#{pagoController.prepareCreate}" value="#{bundle.ViewPagoCreateLink}" />
+                <br />
+                <h:commandLink action="#{pagoController.prepareList}" value="#{bundle.ViewPagoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPagoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

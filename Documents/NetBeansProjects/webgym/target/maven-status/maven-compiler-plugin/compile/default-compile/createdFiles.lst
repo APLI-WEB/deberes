@@ -1,0 +1,7 @@
+conexion\cabdatos.class
+DAO\clisql.class
+com\mycompany\webgym\resources\JakartaEE8Resource.class
+conexionlogin\cbdlogin.class
+conexionlogin\registro.class
+clientes\clientesbd.class
+com\mycompany\webgym\JakartaRestConfiguration.class

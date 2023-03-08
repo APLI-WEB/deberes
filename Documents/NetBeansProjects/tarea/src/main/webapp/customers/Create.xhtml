@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomersCreateDlg" widgetVar="CustomersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCustomersTitle}">
+            <h:form id="CustomersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_customerId}" for="customerId" />
+                        <p:inputText id="customerId" value="#{customersController.selected.customerId}" title="#{bundle.CreateCustomersTitle_customerId}" required="true" requiredMessage="#{bundle.CreateCustomersRequiredMessage_customerId}"/>
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_companyName}" for="companyName" />
+                        <p:inputText id="companyName" value="#{customersController.selected.companyName}" title="#{bundle.CreateCustomersTitle_companyName}" required="true" requiredMessage="#{bundle.CreateCustomersRequiredMessage_companyName}"/>
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_contactName}" for="contactName" />
+                        <p:inputText id="contactName" value="#{customersController.selected.contactName}" title="#{bundle.CreateCustomersTitle_contactName}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_contactTitle}" for="contactTitle" />
+                        <p:inputText id="contactTitle" value="#{customersController.selected.contactTitle}" title="#{bundle.CreateCustomersTitle_contactTitle}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{customersController.selected.address}" title="#{bundle.CreateCustomersTitle_address}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{customersController.selected.city}" title="#{bundle.CreateCustomersTitle_city}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_region}" for="region" />
+                        <p:inputText id="region" value="#{customersController.selected.region}" title="#{bundle.CreateCustomersTitle_region}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_postalCode}" for="postalCode" />
+                        <p:inputText id="postalCode" value="#{customersController.selected.postalCode}" title="#{bundle.CreateCustomersTitle_postalCode}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{customersController.selected.country}" title="#{bundle.CreateCustomersTitle_country}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{customersController.selected.phone}" title="#{bundle.CreateCustomersTitle_phone}" />
+                        <p:outputLabel value="#{bundle.CreateCustomersLabel_fax}" for="fax" />
+                        <p:inputText id="fax" value="#{customersController.selected.fax}" title="#{bundle.CreateCustomersTitle_fax}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customersController.create}" value="#{bundle.Save}" update="display,:CustomersListForm:datalist,:growl" oncomplete="handleSubmit(args,'CustomersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

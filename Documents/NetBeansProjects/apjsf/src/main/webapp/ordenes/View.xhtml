@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOrdenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOrdenesLabel_ordenid}"/>
+                    <h:outputText value="#{ordenesController.selected.ordenid}" title="#{bundle.ViewOrdenesTitle_ordenid}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesLabel_fechaorden}"/>
+                    <h:outputText value="#{ordenesController.selected.fechaorden}" title="#{bundle.ViewOrdenesTitle_fechaorden}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOrdenesLabel_descuento}"/>
+                    <h:outputText value="#{ordenesController.selected.descuento}" title="#{bundle.ViewOrdenesTitle_descuento}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesLabel_clienteid}"/>
+                    <h:outputText value="#{ordenesController.selected.clienteid}" title="#{bundle.ViewOrdenesTitle_clienteid}"/>
+                    <h:outputText value="#{bundle.ViewOrdenesLabel_empleadoid}"/>
+                    <h:outputText value="#{ordenesController.selected.empleadoid}" title="#{bundle.ViewOrdenesTitle_empleadoid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ordenesController.destroyAndView}" value="#{bundle.ViewOrdenesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOrdenesEditLink}"/>
+                <br />
+                <h:commandLink action="#{ordenesController.prepareCreate}" value="#{bundle.ViewOrdenesCreateLink}" />
+                <br />
+                <h:commandLink action="#{ordenesController.prepareList}" value="#{bundle.ViewOrdenesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOrdenesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

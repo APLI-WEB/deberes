@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGamaProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGamaProductoLabel_gama}" for="gama" />
+                    <h:inputText id="gama" value="#{gamaProductoController.selected.gama}" title="#{bundle.EditGamaProductoTitle_gama}" required="true" requiredMessage="#{bundle.EditGamaProductoRequiredMessage_gama}"/>
+                    <h:outputLabel value="#{bundle.EditGamaProductoLabel_descripcionTexto}" for="descripcionTexto" />
+                    <h:inputText id="descripcionTexto" value="#{gamaProductoController.selected.descripcionTexto}" title="#{bundle.EditGamaProductoTitle_descripcionTexto}" />
+                    <h:outputLabel value="#{bundle.EditGamaProductoLabel_descripcionHtml}" for="descripcionHtml" />
+                    <h:inputText id="descripcionHtml" value="#{gamaProductoController.selected.descripcionHtml}" title="#{bundle.EditGamaProductoTitle_descripcionHtml}" />
+                    <h:outputLabel value="#{bundle.EditGamaProductoLabel_imagen}" for="imagen" />
+                    <h:inputText id="imagen" value="#{gamaProductoController.selected.imagen}" title="#{bundle.EditGamaProductoTitle_imagen}" />
+                </h:panelGrid>
+                <h:commandLink action="#{gamaProductoController.update}" value="#{bundle.EditGamaProductoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGamaProductoViewLink}"/>
+                <br />
+                <h:commandLink action="#{gamaProductoController.prepareList}" value="#{bundle.EditGamaProductoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGamaProductoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

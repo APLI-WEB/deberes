@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInvoiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_invoiceId}" for="invoiceId" />
+                    <h:inputText id="invoiceId" value="#{invoiceController.selected.invoiceId}" title="#{bundle.EditInvoiceTitle_invoiceId}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_invoiceId}"/>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_invoiceDate}" for="invoiceDate" />
+                    <h:inputText id="invoiceDate" value="#{invoiceController.selected.invoiceDate}" title="#{bundle.EditInvoiceTitle_invoiceDate}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_invoiceDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_billingAddress}" for="billingAddress" />
+                    <h:inputText id="billingAddress" value="#{invoiceController.selected.billingAddress}" title="#{bundle.EditInvoiceTitle_billingAddress}" />
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_billingCity}" for="billingCity" />
+                    <h:inputText id="billingCity" value="#{invoiceController.selected.billingCity}" title="#{bundle.EditInvoiceTitle_billingCity}" />
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_billingState}" for="billingState" />
+                    <h:inputText id="billingState" value="#{invoiceController.selected.billingState}" title="#{bundle.EditInvoiceTitle_billingState}" />
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_billingCountry}" for="billingCountry" />
+                    <h:inputText id="billingCountry" value="#{invoiceController.selected.billingCountry}" title="#{bundle.EditInvoiceTitle_billingCountry}" />
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_billingPostalCode}" for="billingPostalCode" />
+                    <h:inputText id="billingPostalCode" value="#{invoiceController.selected.billingPostalCode}" title="#{bundle.EditInvoiceTitle_billingPostalCode}" />
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_total}" for="total" />
+                    <h:inputText id="total" value="#{invoiceController.selected.total}" title="#{bundle.EditInvoiceTitle_total}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_total}"/>
+                    <h:outputLabel value="#{bundle.EditInvoiceLabel_customerId}" for="customerId" />
+                    <h:selectOneMenu id="customerId" value="#{invoiceController.selected.customerId}" title="#{bundle.EditInvoiceTitle_customerId}" required="true" requiredMessage="#{bundle.EditInvoiceRequiredMessage_customerId}">
+                        <f:selectItems value="#{customerController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{invoiceController.update}" value="#{bundle.EditInvoiceSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditInvoiceViewLink}"/>
+                <br />
+                <h:commandLink action="#{invoiceController.prepareList}" value="#{bundle.EditInvoiceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditInvoiceIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

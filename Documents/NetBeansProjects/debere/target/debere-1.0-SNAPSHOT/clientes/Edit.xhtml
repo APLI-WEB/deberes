@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditClientesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditClientesLabel_clienteid}" for="clienteid" />
+                    <h:inputText id="clienteid" value="#{clientesController.selected.clienteid}" title="#{bundle.EditClientesTitle_clienteid}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_clienteid}"/>
+                    <h:outputLabel value="#{bundle.EditClientesLabel_cedulaRuc}" for="cedulaRuc" />
+                    <h:inputText id="cedulaRuc" value="#{clientesController.selected.cedulaRuc}" title="#{bundle.EditClientesTitle_cedulaRuc}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_cedulaRuc}"/>
+                    <h:outputLabel value="#{bundle.EditClientesLabel_nombrecia}" for="nombrecia" />
+                    <h:inputText id="nombrecia" value="#{clientesController.selected.nombrecia}" title="#{bundle.EditClientesTitle_nombrecia}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_nombrecia}"/>
+                    <h:outputLabel value="#{bundle.EditClientesLabel_nombrecontacto}" for="nombrecontacto" />
+                    <h:inputText id="nombrecontacto" value="#{clientesController.selected.nombrecontacto}" title="#{bundle.EditClientesTitle_nombrecontacto}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_nombrecontacto}"/>
+                    <h:outputLabel value="#{bundle.EditClientesLabel_direccioncli}" for="direccioncli" />
+                    <h:inputText id="direccioncli" value="#{clientesController.selected.direccioncli}" title="#{bundle.EditClientesTitle_direccioncli}" required="true" requiredMessage="#{bundle.EditClientesRequiredMessage_direccioncli}"/>
+                    <h:outputLabel value="#{bundle.EditClientesLabel_fax}" for="fax" />
+                    <h:inputText id="fax" value="#{clientesController.selected.fax}" title="#{bundle.EditClientesTitle_fax}" />
+                    <h:outputLabel value="#{bundle.EditClientesLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{clientesController.selected.email}" title="#{bundle.EditClientesTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditClientesLabel_celular}" for="celular" />
+                    <h:inputText id="celular" value="#{clientesController.selected.celular}" title="#{bundle.EditClientesTitle_celular}" />
+                    <h:outputLabel value="#{bundle.EditClientesLabel_fijo}" for="fijo" />
+                    <h:inputText id="fijo" value="#{clientesController.selected.fijo}" title="#{bundle.EditClientesTitle_fijo}" />
+                </h:panelGrid>
+                <h:commandLink action="#{clientesController.update}" value="#{bundle.EditClientesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditClientesViewLink}"/>
+                <br />
+                <h:commandLink action="#{clientesController.prepareList}" value="#{bundle.EditClientesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditClientesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

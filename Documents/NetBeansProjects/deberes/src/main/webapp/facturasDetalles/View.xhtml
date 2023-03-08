@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFacturasDetallesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_id}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.id}" title="#{bundle.ViewFacturasDetallesTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_tipo}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.tipo}" title="#{bundle.ViewFacturasDetallesTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_descrFactura}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.descrFactura}" title="#{bundle.ViewFacturasDetallesTitle_descrFactura}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_costoAsoc}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.costoAsoc}" title="#{bundle.ViewFacturasDetallesTitle_costoAsoc}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_iva}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.iva}" title="#{bundle.ViewFacturasDetallesTitle_iva}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_medioDePago}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.medioDePago}" title="#{bundle.ViewFacturasDetallesTitle_medioDePago}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_descrPago}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.descrPago}" title="#{bundle.ViewFacturasDetallesTitle_descrPago}"/>
+                    <h:outputText value="#{bundle.ViewFacturasDetallesLabel_idFactura}"/>
+                    <h:outputText value="#{facturasDetallesController.selected.idFactura}" title="#{bundle.ViewFacturasDetallesTitle_idFactura}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturasDetallesController.destroyAndView}" value="#{bundle.ViewFacturasDetallesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFacturasDetallesEditLink}"/>
+                <br />
+                <h:commandLink action="#{facturasDetallesController.prepareCreate}" value="#{bundle.ViewFacturasDetallesCreateLink}" />
+                <br />
+                <h:commandLink action="#{facturasDetallesController.prepareList}" value="#{bundle.ViewFacturasDetallesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFacturasDetallesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

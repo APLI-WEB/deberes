@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrderDetailsEditDlg" widgetVar="OrderDetailsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOrderDetailsTitle}">
+            <h:form id="OrderDetailsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{orderDetailsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOrderDetailsLabel_unitPrice}" for="unitPrice" />
+                        <p:inputText id="unitPrice" value="#{orderDetailsController.selected.unitPrice}" title="#{bundle.EditOrderDetailsTitle_unitPrice}" required="true" requiredMessage="#{bundle.EditOrderDetailsRequiredMessage_unitPrice}"/>
+                        <p:outputLabel value="#{bundle.EditOrderDetailsLabel_quantity}" for="quantity" />
+                        <p:inputText id="quantity" value="#{orderDetailsController.selected.quantity}" title="#{bundle.EditOrderDetailsTitle_quantity}" required="true" requiredMessage="#{bundle.EditOrderDetailsRequiredMessage_quantity}"/>
+                        <p:outputLabel value="#{bundle.EditOrderDetailsLabel_discount}" for="discount" />
+                        <p:inputText id="discount" value="#{orderDetailsController.selected.discount}" title="#{bundle.EditOrderDetailsTitle_discount}" required="true" requiredMessage="#{bundle.EditOrderDetailsRequiredMessage_discount}"/>
+                        <p:outputLabel value="#{bundle.EditOrderDetailsLabel_orders}" for="orders" />
+                        <p:selectOneMenu id="orders" value="#{orderDetailsController.selected.orders}" required="true" requiredMessage="#{bundle.EditOrderDetailsRequiredMessage_orders}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{ordersController.itemsAvailableSelectOne}"
+                                           var="ordersItem"
+                                           itemValue="#{ordersItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrderDetailsLabel_products}" for="products" />
+                        <p:selectOneMenu id="products" value="#{orderDetailsController.selected.products}" required="true" requiredMessage="#{bundle.EditOrderDetailsRequiredMessage_products}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productsController.itemsAvailableSelectOne}"
+                                           var="productsItem"
+                                           itemValue="#{productsItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{orderDetailsController.update}" value="#{bundle.Save}" update="display,:OrderDetailsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrderDetailsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrderDetailsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

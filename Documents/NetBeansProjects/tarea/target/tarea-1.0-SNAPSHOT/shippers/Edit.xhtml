@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ShippersEditDlg" widgetVar="ShippersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditShippersTitle}">
+            <h:form id="ShippersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{shippersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditShippersLabel_shipperId}" for="shipperId" />
+                        <p:inputText id="shipperId" value="#{shippersController.selected.shipperId}" title="#{bundle.EditShippersTitle_shipperId}" required="true" requiredMessage="#{bundle.EditShippersRequiredMessage_shipperId}"/>
+                        <p:outputLabel value="#{bundle.EditShippersLabel_companyName}" for="companyName" />
+                        <p:inputText id="companyName" value="#{shippersController.selected.companyName}" title="#{bundle.EditShippersTitle_companyName}" required="true" requiredMessage="#{bundle.EditShippersRequiredMessage_companyName}"/>
+                        <p:outputLabel value="#{bundle.EditShippersLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{shippersController.selected.phone}" title="#{bundle.EditShippersTitle_phone}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{shippersController.update}" value="#{bundle.Save}" update="display,:ShippersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ShippersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ShippersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateInvoiceLineTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateInvoiceLineLabel_invoiceLineId}" for="invoiceLineId" />
+                    <h:inputText id="invoiceLineId" value="#{invoiceLineController.selected.invoiceLineId}" title="#{bundle.CreateInvoiceLineTitle_invoiceLineId}" required="true" requiredMessage="#{bundle.CreateInvoiceLineRequiredMessage_invoiceLineId}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLineLabel_unitPrice}" for="unitPrice" />
+                    <h:inputText id="unitPrice" value="#{invoiceLineController.selected.unitPrice}" title="#{bundle.CreateInvoiceLineTitle_unitPrice}" required="true" requiredMessage="#{bundle.CreateInvoiceLineRequiredMessage_unitPrice}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLineLabel_quantity}" for="quantity" />
+                    <h:inputText id="quantity" value="#{invoiceLineController.selected.quantity}" title="#{bundle.CreateInvoiceLineTitle_quantity}" required="true" requiredMessage="#{bundle.CreateInvoiceLineRequiredMessage_quantity}"/>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLineLabel_invoiceId}" for="invoiceId" />
+                    <h:selectOneMenu id="invoiceId" value="#{invoiceLineController.selected.invoiceId}" title="#{bundle.CreateInvoiceLineTitle_invoiceId}" required="true" requiredMessage="#{bundle.CreateInvoiceLineRequiredMessage_invoiceId}">
+                        <f:selectItems value="#{invoiceController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateInvoiceLineLabel_trackId}" for="trackId" />
+                    <h:selectOneMenu id="trackId" value="#{invoiceLineController.selected.trackId}" title="#{bundle.CreateInvoiceLineTitle_trackId}" required="true" requiredMessage="#{bundle.CreateInvoiceLineRequiredMessage_trackId}">
+                        <f:selectItems value="#{trackController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{invoiceLineController.create}" value="#{bundle.CreateInvoiceLineSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{invoiceLineController.prepareList}" value="#{bundle.CreateInvoiceLineShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateInvoiceLineIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

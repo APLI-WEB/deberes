@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerDemographicsCreateDlg" widgetVar="CustomerDemographicsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCustomerDemographicsTitle}">
+            <h:form id="CustomerDemographicsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerDemographicsController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCustomerDemographicsLabel_customerTypeId}" for="customerTypeId" />
+                        <p:inputText id="customerTypeId" value="#{customerDemographicsController.selected.customerTypeId}" title="#{bundle.CreateCustomerDemographicsTitle_customerTypeId}" required="true" requiredMessage="#{bundle.CreateCustomerDemographicsRequiredMessage_customerTypeId}"/>
+                        <p:outputLabel value="#{bundle.CreateCustomerDemographicsLabel_customerDesc}" for="customerDesc" />
+                        <p:inputText id="customerDesc" value="#{customerDemographicsController.selected.customerDesc}" title="#{bundle.CreateCustomerDemographicsTitle_customerDesc}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{customerDemographicsController.create}" value="#{bundle.Save}" update="display,:CustomerDemographicsListForm:datalist,:growl" oncomplete="handleSubmit(args,'CustomerDemographicsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CustomerDemographicsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

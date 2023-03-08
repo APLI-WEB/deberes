@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFacturasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{facturasController.selected.id}" title="#{bundle.CreateFacturasTitle_id}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{facturasController.selected.numero}" title="#{bundle.CreateFacturasTitle_numero}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{facturasController.selected.codigo}" title="#{bundle.CreateFacturasTitle_codigo}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{facturasController.selected.fecha}" title="#{bundle.CreateFacturasTitle_fecha}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{facturasController.selected.hora}" title="#{bundle.CreateFacturasTitle_hora}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_hora}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_importeTotal}" for="importeTotal" />
+                    <h:inputText id="importeTotal" value="#{facturasController.selected.importeTotal}" title="#{bundle.CreateFacturasTitle_importeTotal}" required="true" requiredMessage="#{bundle.CreateFacturasRequiredMessage_importeTotal}"/>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_ventas}" for="ventas" />
+                    <h:selectOneMenu id="ventas" value="#{facturasController.selected.ventas}" title="#{bundle.CreateFacturasTitle_ventas}" >
+                        <f:selectItems value="#{ventasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFacturasLabel_facturasDetalles}" for="facturasDetalles" />
+                    <h:selectOneMenu id="facturasDetalles" value="#{facturasController.selected.facturasDetalles}" title="#{bundle.CreateFacturasTitle_facturasDetalles}" >
+                        <f:selectItems value="#{facturasDetallesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturasController.create}" value="#{bundle.CreateFacturasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{facturasController.prepareList}" value="#{bundle.CreateFacturasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFacturasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

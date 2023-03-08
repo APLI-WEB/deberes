@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOrdenesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOrdenesLabel_ordenid}" for="ordenid" />
+                    <h:inputText id="ordenid" value="#{ordenesController.selected.ordenid}" title="#{bundle.EditOrdenesTitle_ordenid}" required="true" requiredMessage="#{bundle.EditOrdenesRequiredMessage_ordenid}"/>
+                    <h:outputLabel value="#{bundle.EditOrdenesLabel_fechaorden}" for="fechaorden" />
+                    <h:inputText id="fechaorden" value="#{ordenesController.selected.fechaorden}" title="#{bundle.EditOrdenesTitle_fechaorden}" required="true" requiredMessage="#{bundle.EditOrdenesRequiredMessage_fechaorden}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditOrdenesLabel_descuento}" for="descuento" />
+                    <h:inputText id="descuento" value="#{ordenesController.selected.descuento}" title="#{bundle.EditOrdenesTitle_descuento}" />
+                    <h:outputLabel value="#{bundle.EditOrdenesLabel_clienteid}" for="clienteid" />
+                    <h:selectOneMenu id="clienteid" value="#{ordenesController.selected.clienteid}" title="#{bundle.EditOrdenesTitle_clienteid}" required="true" requiredMessage="#{bundle.EditOrdenesRequiredMessage_clienteid}">
+                        <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOrdenesLabel_empleadoid}" for="empleadoid" />
+                    <h:selectOneMenu id="empleadoid" value="#{ordenesController.selected.empleadoid}" title="#{bundle.EditOrdenesTitle_empleadoid}" required="true" requiredMessage="#{bundle.EditOrdenesRequiredMessage_empleadoid}">
+                        <f:selectItems value="#{empleadosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{ordenesController.update}" value="#{bundle.EditOrdenesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOrdenesViewLink}"/>
+                <br />
+                <h:commandLink action="#{ordenesController.prepareList}" value="#{bundle.EditOrdenesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOrdenesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

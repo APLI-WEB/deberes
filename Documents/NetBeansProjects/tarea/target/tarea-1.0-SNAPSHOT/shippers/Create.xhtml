@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ShippersCreateDlg" widgetVar="ShippersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateShippersTitle}">
+            <h:form id="ShippersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{shippersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateShippersLabel_shipperId}" for="shipperId" />
+                        <p:inputText id="shipperId" value="#{shippersController.selected.shipperId}" title="#{bundle.CreateShippersTitle_shipperId}" required="true" requiredMessage="#{bundle.CreateShippersRequiredMessage_shipperId}"/>
+                        <p:outputLabel value="#{bundle.CreateShippersLabel_companyName}" for="companyName" />
+                        <p:inputText id="companyName" value="#{shippersController.selected.companyName}" title="#{bundle.CreateShippersTitle_companyName}" required="true" requiredMessage="#{bundle.CreateShippersRequiredMessage_companyName}"/>
+                        <p:outputLabel value="#{bundle.CreateShippersLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{shippersController.selected.phone}" title="#{bundle.CreateShippersTitle_phone}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{shippersController.create}" value="#{bundle.Save}" update="display,:ShippersListForm:datalist,:growl" oncomplete="handleSubmit(args,'ShippersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ShippersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTrackTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_trackId}" for="trackId" />
+                    <h:inputText id="trackId" value="#{trackController.selected.trackId}" title="#{bundle.CreateTrackTitle_trackId}" required="true" requiredMessage="#{bundle.CreateTrackRequiredMessage_trackId}"/>
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{trackController.selected.name}" title="#{bundle.CreateTrackTitle_name}" required="true" requiredMessage="#{bundle.CreateTrackRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_composer}" for="composer" />
+                    <h:inputText id="composer" value="#{trackController.selected.composer}" title="#{bundle.CreateTrackTitle_composer}" />
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_milliseconds}" for="milliseconds" />
+                    <h:inputText id="milliseconds" value="#{trackController.selected.milliseconds}" title="#{bundle.CreateTrackTitle_milliseconds}" required="true" requiredMessage="#{bundle.CreateTrackRequiredMessage_milliseconds}"/>
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_bytes}" for="bytes" />
+                    <h:inputText id="bytes" value="#{trackController.selected.bytes}" title="#{bundle.CreateTrackTitle_bytes}" />
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_unitPrice}" for="unitPrice" />
+                    <h:inputText id="unitPrice" value="#{trackController.selected.unitPrice}" title="#{bundle.CreateTrackTitle_unitPrice}" required="true" requiredMessage="#{bundle.CreateTrackRequiredMessage_unitPrice}"/>
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_albumId}" for="albumId" />
+                    <h:selectOneMenu id="albumId" value="#{trackController.selected.albumId}" title="#{bundle.CreateTrackTitle_albumId}" >
+                        <f:selectItems value="#{albumController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_genreId}" for="genreId" />
+                    <h:selectOneMenu id="genreId" value="#{trackController.selected.genreId}" title="#{bundle.CreateTrackTitle_genreId}" >
+                        <f:selectItems value="#{genreController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateTrackLabel_mediaTypeId}" for="mediaTypeId" />
+                    <h:selectOneMenu id="mediaTypeId" value="#{trackController.selected.mediaTypeId}" title="#{bundle.CreateTrackTitle_mediaTypeId}" required="true" requiredMessage="#{bundle.CreateTrackRequiredMessage_mediaTypeId}">
+                        <f:selectItems value="#{mediaTypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{trackController.create}" value="#{bundle.CreateTrackSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{trackController.prepareList}" value="#{bundle.CreateTrackShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTrackIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

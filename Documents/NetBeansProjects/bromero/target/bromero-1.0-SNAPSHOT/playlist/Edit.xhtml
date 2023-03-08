@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPlaylistTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPlaylistLabel_playlistId}" for="playlistId" />
+                    <h:inputText id="playlistId" value="#{playlistController.selected.playlistId}" title="#{bundle.EditPlaylistTitle_playlistId}" required="true" requiredMessage="#{bundle.EditPlaylistRequiredMessage_playlistId}"/>
+                    <h:outputLabel value="#{bundle.EditPlaylistLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{playlistController.selected.name}" title="#{bundle.EditPlaylistTitle_name}" />
+                </h:panelGrid>
+                <h:commandLink action="#{playlistController.update}" value="#{bundle.EditPlaylistSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPlaylistViewLink}"/>
+                <br />
+                <h:commandLink action="#{playlistController.prepareList}" value="#{bundle.EditPlaylistShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPlaylistIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

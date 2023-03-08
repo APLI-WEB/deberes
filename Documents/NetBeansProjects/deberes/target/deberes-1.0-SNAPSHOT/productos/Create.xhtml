@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{productosController.selected.id}" title="#{bundle.CreateProductosTitle_id}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_codigo}" for="codigo" />
+                    <h:inputText id="codigo" value="#{productosController.selected.codigo}" title="#{bundle.CreateProductosTitle_codigo}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_codigo}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_imagen}" for="imagen" />
+                    <h:inputText id="imagen" value="#{productosController.selected.imagen}" title="#{bundle.CreateProductosTitle_imagen}" />
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{productosController.selected.nombre}" title="#{bundle.CreateProductosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_marca}" for="marca" />
+                    <h:inputText id="marca" value="#{productosController.selected.marca}" title="#{bundle.CreateProductosTitle_marca}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_marca}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{productosController.selected.tipo}" title="#{bundle.CreateProductosTitle_tipo}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_tipo}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_grupo}" for="grupo" />
+                    <h:inputText id="grupo" value="#{productosController.selected.grupo}" title="#{bundle.CreateProductosTitle_grupo}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_grupo}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_peso}" for="peso" />
+                    <h:inputText id="peso" value="#{productosController.selected.peso}" title="#{bundle.CreateProductosTitle_peso}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_peso}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_precioUnidad}" for="precioUnidad" />
+                    <h:inputText id="precioUnidad" value="#{productosController.selected.precioUnidad}" title="#{bundle.CreateProductosTitle_precioUnidad}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_precioUnidad}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_stock}" for="stock" />
+                    <h:inputText id="stock" value="#{productosController.selected.stock}" title="#{bundle.CreateProductosTitle_stock}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_stock}"/>
+                    <h:outputLabel value="#{bundle.CreateProductosLabel_idProveedor}" for="idProveedor" />
+                    <h:selectOneMenu id="idProveedor" value="#{productosController.selected.idProveedor}" title="#{bundle.CreateProductosTitle_idProveedor}" required="true" requiredMessage="#{bundle.CreateProductosRequiredMessage_idProveedor}">
+                        <f:selectItems value="#{proveedoresController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productosController.create}" value="#{bundle.CreateProductosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productosController.prepareList}" value="#{bundle.CreateProductosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

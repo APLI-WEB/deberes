@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdersCreateDlg" widgetVar="OrdersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateOrdersTitle}">
+            <h:form id="OrdersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordersController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_orderId}" for="orderId" />
+                        <p:inputText id="orderId" value="#{ordersController.selected.orderId}" title="#{bundle.CreateOrdersTitle_orderId}" required="true" requiredMessage="#{bundle.CreateOrdersRequiredMessage_orderId}"/>
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_orderDate}" for="orderDate" />
+                        <p:calendar id="orderDate" pattern="MM/dd/yyyy" value="#{ordersController.selected.orderDate}" title="#{bundle.EditOrdersTitle_orderDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_requiredDate}" for="requiredDate" />
+                        <p:calendar id="requiredDate" pattern="MM/dd/yyyy" value="#{ordersController.selected.requiredDate}" title="#{bundle.EditOrdersTitle_requiredDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shippedDate}" for="shippedDate" />
+                        <p:calendar id="shippedDate" pattern="MM/dd/yyyy" value="#{ordersController.selected.shippedDate}" title="#{bundle.EditOrdersTitle_shippedDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_freight}" for="freight" />
+                        <p:inputText id="freight" value="#{ordersController.selected.freight}" title="#{bundle.CreateOrdersTitle_freight}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipName}" for="shipName" />
+                        <p:inputText id="shipName" value="#{ordersController.selected.shipName}" title="#{bundle.CreateOrdersTitle_shipName}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipAddress}" for="shipAddress" />
+                        <p:inputText id="shipAddress" value="#{ordersController.selected.shipAddress}" title="#{bundle.CreateOrdersTitle_shipAddress}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipCity}" for="shipCity" />
+                        <p:inputText id="shipCity" value="#{ordersController.selected.shipCity}" title="#{bundle.CreateOrdersTitle_shipCity}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipRegion}" for="shipRegion" />
+                        <p:inputText id="shipRegion" value="#{ordersController.selected.shipRegion}" title="#{bundle.CreateOrdersTitle_shipRegion}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipPostalCode}" for="shipPostalCode" />
+                        <p:inputText id="shipPostalCode" value="#{ordersController.selected.shipPostalCode}" title="#{bundle.CreateOrdersTitle_shipPostalCode}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipCountry}" for="shipCountry" />
+                        <p:inputText id="shipCountry" value="#{ordersController.selected.shipCountry}" title="#{bundle.CreateOrdersTitle_shipCountry}" />
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_customerId}" for="customerId" />
+                        <p:selectOneMenu id="customerId" value="#{ordersController.selected.customerId}" >
+                            <f:selectItems value="#{customersController.itemsAvailableSelectOne}"
+                                           var="customerIdItem"
+                                           itemValue="#{customerIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_employeeId}" for="employeeId" />
+                        <p:selectOneMenu id="employeeId" value="#{ordersController.selected.employeeId}" >
+                            <f:selectItems value="#{employeesController.itemsAvailableSelectOne}"
+                                           var="employeeIdItem"
+                                           itemValue="#{employeeIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateOrdersLabel_shipVia}" for="shipVia" />
+                        <p:selectOneMenu id="shipVia" value="#{ordersController.selected.shipVia}" >
+                            <f:selectItems value="#{shippersController.itemsAvailableSelectOne}"
+                                           var="shipViaItem"
+                                           itemValue="#{shipViaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordersController.create}" value="#{bundle.Save}" update="display,:OrdersListForm:datalist,:growl" oncomplete="handleSubmit(args,'OrdersCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdersCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTrackTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTrackLabel_trackId}"/>
+                    <h:outputText value="#{trackController.selected.trackId}" title="#{bundle.ViewTrackTitle_trackId}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_name}"/>
+                    <h:outputText value="#{trackController.selected.name}" title="#{bundle.ViewTrackTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_composer}"/>
+                    <h:outputText value="#{trackController.selected.composer}" title="#{bundle.ViewTrackTitle_composer}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_milliseconds}"/>
+                    <h:outputText value="#{trackController.selected.milliseconds}" title="#{bundle.ViewTrackTitle_milliseconds}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_bytes}"/>
+                    <h:outputText value="#{trackController.selected.bytes}" title="#{bundle.ViewTrackTitle_bytes}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_unitPrice}"/>
+                    <h:outputText value="#{trackController.selected.unitPrice}" title="#{bundle.ViewTrackTitle_unitPrice}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_albumId}"/>
+                    <h:outputText value="#{trackController.selected.albumId}" title="#{bundle.ViewTrackTitle_albumId}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_genreId}"/>
+                    <h:outputText value="#{trackController.selected.genreId}" title="#{bundle.ViewTrackTitle_genreId}"/>
+                    <h:outputText value="#{bundle.ViewTrackLabel_mediaTypeId}"/>
+                    <h:outputText value="#{trackController.selected.mediaTypeId}" title="#{bundle.ViewTrackTitle_mediaTypeId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{trackController.destroyAndView}" value="#{bundle.ViewTrackDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTrackEditLink}"/>
+                <br />
+                <h:commandLink action="#{trackController.prepareCreate}" value="#{bundle.ViewTrackCreateLink}" />
+                <br />
+                <h:commandLink action="#{trackController.prepareList}" value="#{bundle.ViewTrackShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTrackIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

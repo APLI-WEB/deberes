@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturasDetallesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{facturasDetallesController.selected.id}" title="#{bundle.EditFacturasDetallesTitle_id}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{facturasDetallesController.selected.tipo}" title="#{bundle.EditFacturasDetallesTitle_tipo}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_tipo}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_descrFactura}" for="descrFactura" />
+                    <h:inputText id="descrFactura" value="#{facturasDetallesController.selected.descrFactura}" title="#{bundle.EditFacturasDetallesTitle_descrFactura}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_descrFactura}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_costoAsoc}" for="costoAsoc" />
+                    <h:inputText id="costoAsoc" value="#{facturasDetallesController.selected.costoAsoc}" title="#{bundle.EditFacturasDetallesTitle_costoAsoc}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_costoAsoc}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_iva}" for="iva" />
+                    <h:inputText id="iva" value="#{facturasDetallesController.selected.iva}" title="#{bundle.EditFacturasDetallesTitle_iva}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_iva}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_medioDePago}" for="medioDePago" />
+                    <h:inputText id="medioDePago" value="#{facturasDetallesController.selected.medioDePago}" title="#{bundle.EditFacturasDetallesTitle_medioDePago}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_medioDePago}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_descrPago}" for="descrPago" />
+                    <h:inputText id="descrPago" value="#{facturasDetallesController.selected.descrPago}" title="#{bundle.EditFacturasDetallesTitle_descrPago}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_descrPago}"/>
+                    <h:outputLabel value="#{bundle.EditFacturasDetallesLabel_idFactura}" for="idFactura" />
+                    <h:selectOneMenu id="idFactura" value="#{facturasDetallesController.selected.idFactura}" title="#{bundle.EditFacturasDetallesTitle_idFactura}" required="true" requiredMessage="#{bundle.EditFacturasDetallesRequiredMessage_idFactura}">
+                        <f:selectItems value="#{facturasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{facturasDetallesController.update}" value="#{bundle.EditFacturasDetallesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturasDetallesViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturasDetallesController.prepareList}" value="#{bundle.EditFacturasDetallesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturasDetallesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

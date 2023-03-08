@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmpleadosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_empleadoid}" for="empleadoid" />
+                    <h:inputText id="empleadoid" value="#{empleadosController.selected.empleadoid}" title="#{bundle.EditEmpleadosTitle_empleadoid}" required="true" requiredMessage="#{bundle.EditEmpleadosRequiredMessage_empleadoid}"/>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{empleadosController.selected.nombre}" title="#{bundle.EditEmpleadosTitle_nombre}" />
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_apellido}" for="apellido" />
+                    <h:inputText id="apellido" value="#{empleadosController.selected.apellido}" title="#{bundle.EditEmpleadosTitle_apellido}" />
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_fechaNac}" for="fechaNac" />
+                    <h:inputText id="fechaNac" value="#{empleadosController.selected.fechaNac}" title="#{bundle.EditEmpleadosTitle_fechaNac}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_extension}" for="extension" />
+                    <h:inputText id="extension" value="#{empleadosController.selected.extension}" title="#{bundle.EditEmpleadosTitle_extension}" />
+                    <h:outputLabel value="#{bundle.EditEmpleadosLabel_reportaA}" for="reportaA" />
+                    <h:selectOneMenu id="reportaA" value="#{empleadosController.selected.reportaA}" title="#{bundle.EditEmpleadosTitle_reportaA}" >
+                        <f:selectItems value="#{empleadosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{empleadosController.update}" value="#{bundle.EditEmpleadosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmpleadosViewLink}"/>
+                <br />
+                <h:commandLink action="#{empleadosController.prepareList}" value="#{bundle.EditEmpleadosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmpleadosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
